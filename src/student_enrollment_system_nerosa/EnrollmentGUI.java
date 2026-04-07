@@ -6,7 +6,7 @@ package student_enrollment_system_nerosa;
 
 /**
  *
- * @author Kane
+ * @author FernanCarl
  */
 public class EnrollmentGUI extends javax.swing.JFrame {
     
