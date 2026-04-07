@@ -4,6 +4,9 @@
  */
 package student_enrollment_system_nerosa;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author FernanCarl
@@ -17,6 +20,7 @@ public class StudentGUI extends javax.swing.JFrame {
      */
     public StudentGUI() {
         initComponents();
+        refreshTable();
     }
 
     /**
@@ -47,7 +51,7 @@ public class StudentGUI extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID Number", "First Name", "Last Name", "Age", "Email"
+                "Student ID", "First Name", "Last Name", "Age", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -142,7 +146,28 @@ public class StudentGUI extends javax.swing.JFrame {
     new EnrollmentGUI().setVisible(true);
     this.dispose();
     }//GEN-LAST:event_EnrollmentBtnActionPerformed
-
+    
+    public void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        StudentDAO dao = new StudentDAO();
+        List<Student> list = dao.getAllStudents();
+        
+        if(list != null) {
+            for (Student s : list) {
+                Object[] row = {
+                    s.getStudentid(),
+                    s.getFname(),
+                    s.getLname(),
+                    s.getAge(),
+                    s.getEmail()
+                };
+                model.addRow(row);
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

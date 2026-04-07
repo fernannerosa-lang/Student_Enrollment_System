@@ -30,27 +30,26 @@ public class EnrollmentGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        addStudentBtn = new javax.swing.JButton();
-        updateStudentBtn = new javax.swing.JButton();
-        delStudentBtn = new javax.swing.JButton();
+        EnrollStudentBtn = new javax.swing.JButton();
+        delEnrollmentBtn = new javax.swing.JButton();
+        studentBtn = new javax.swing.JButton();
         coursesBtn = new javax.swing.JButton();
-        EnrollmentBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Number", "First Name", "Last Name", "Age", "Email"
+                "Enrollment ID", "Student Name", "Course Name", "Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -58,21 +57,24 @@ public class EnrollmentGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        addStudentBtn.setText("Add Student");
-        addStudentBtn.addActionListener(this::addStudentBtnActionPerformed);
+        EnrollStudentBtn.setText("Enroll Student");
+        EnrollStudentBtn.addActionListener(this::EnrollStudentBtnActionPerformed);
 
-        updateStudentBtn.setText("Update Student");
-        updateStudentBtn.addActionListener(this::updateStudentBtnActionPerformed);
+        delEnrollmentBtn.setText("Update Student");
+        delEnrollmentBtn.addActionListener(this::delEnrollmentBtnActionPerformed);
 
-        delStudentBtn.setText("Delete Student");
-        delStudentBtn.addActionListener(this::delStudentBtnActionPerformed);
+        studentBtn.setText("Students");
+        studentBtn.addActionListener(this::studentBtnActionPerformed);
 
         coursesBtn.setText("Courses");
         coursesBtn.addActionListener(this::coursesBtnActionPerformed);
-
-        EnrollmentBtn.setText("Enrollment");
-        EnrollmentBtn.addActionListener(this::EnrollmentBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,15 +84,13 @@ public class EnrollmentGUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addStudentBtn)
+                        .addComponent(EnrollStudentBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(updateStudentBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(delStudentBtn)
+                        .addComponent(delEnrollmentBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(coursesBtn)
+                        .addComponent(studentBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(EnrollmentBtn))
+                        .addComponent(coursesBtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -99,11 +99,10 @@ public class EnrollmentGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addStudentBtn)
-                    .addComponent(updateStudentBtn)
-                    .addComponent(delStudentBtn)
-                    .addComponent(coursesBtn)
-                    .addComponent(EnrollmentBtn))
+                    .addComponent(EnrollStudentBtn)
+                    .addComponent(delEnrollmentBtn)
+                    .addComponent(studentBtn)
+                    .addComponent(coursesBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -113,27 +112,23 @@ public class EnrollmentGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
+    private void EnrollStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollStudentBtnActionPerformed
         new AddStudentFrame().setVisible(true);
-    }//GEN-LAST:event_addStudentBtnActionPerformed
+    }//GEN-LAST:event_EnrollStudentBtnActionPerformed
 
-    private void updateStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudentBtnActionPerformed
+    private void delEnrollmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEnrollmentBtnActionPerformed
         new UpdateStudentFrame().setVisible(true);
-    }//GEN-LAST:event_updateStudentBtnActionPerformed
+    }//GEN-LAST:event_delEnrollmentBtnActionPerformed
 
-    private void delStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delStudentBtnActionPerformed
-        new DeleteStudentFrame().setVisible(true);
-    }//GEN-LAST:event_delStudentBtnActionPerformed
+    private void studentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBtnActionPerformed
+        new StudentGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_studentBtnActionPerformed
 
     private void coursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursesBtnActionPerformed
         new CoursesGUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_coursesBtnActionPerformed
-
-    private void EnrollmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollmentBtnActionPerformed
-        new EnrollmentGUI().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_EnrollmentBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,12 +156,11 @@ public class EnrollmentGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton EnrollmentBtn;
-    private javax.swing.JButton addStudentBtn;
+    private javax.swing.JButton EnrollStudentBtn;
     private javax.swing.JButton coursesBtn;
-    private javax.swing.JButton delStudentBtn;
+    private javax.swing.JButton delEnrollmentBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton updateStudentBtn;
+    private javax.swing.JButton studentBtn;
     // End of variables declaration//GEN-END:variables
 }

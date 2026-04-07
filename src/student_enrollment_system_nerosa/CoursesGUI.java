@@ -30,27 +30,28 @@ public class CoursesGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        addStudentBtn = new javax.swing.JButton();
-        updateStudentBtn = new javax.swing.JButton();
-        delStudentBtn = new javax.swing.JButton();
-        coursesBtn = new javax.swing.JButton();
+        addCourseBtn = new javax.swing.JButton();
+        updateCourseBtn = new javax.swing.JButton();
+        delCourseBtn = new javax.swing.JButton();
+        studentsBtn = new javax.swing.JButton();
         EnrollmentBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Courses Management");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Number", "First Name", "Last Name", "Age", "Email"
+                "Course ID", "Course Name", "Course Description", "Credits"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -58,18 +59,24 @@ public class CoursesGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        addStudentBtn.setText("Add Student");
-        addStudentBtn.addActionListener(this::addStudentBtnActionPerformed);
+        addCourseBtn.setText("Add Course");
+        addCourseBtn.addActionListener(this::addCourseBtnActionPerformed);
 
-        updateStudentBtn.setText("Update Student");
-        updateStudentBtn.addActionListener(this::updateStudentBtnActionPerformed);
+        updateCourseBtn.setText("Update Course");
+        updateCourseBtn.addActionListener(this::updateCourseBtnActionPerformed);
 
-        delStudentBtn.setText("Delete Student");
-        delStudentBtn.addActionListener(this::delStudentBtnActionPerformed);
+        delCourseBtn.setText("Delete Course");
+        delCourseBtn.addActionListener(this::delCourseBtnActionPerformed);
 
-        coursesBtn.setText("Courses");
-        coursesBtn.addActionListener(this::coursesBtnActionPerformed);
+        studentsBtn.setText("Students");
+        studentsBtn.addActionListener(this::studentsBtnActionPerformed);
 
         EnrollmentBtn.setText("Enrollment");
         EnrollmentBtn.addActionListener(this::EnrollmentBtnActionPerformed);
@@ -82,13 +89,13 @@ public class CoursesGUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addStudentBtn)
+                        .addComponent(addCourseBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(updateStudentBtn)
+                        .addComponent(updateCourseBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(delStudentBtn)
+                        .addComponent(delCourseBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(coursesBtn)
+                        .addComponent(studentsBtn)
                         .addGap(18, 18, 18)
                         .addComponent(EnrollmentBtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -99,10 +106,10 @@ public class CoursesGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addStudentBtn)
-                    .addComponent(updateStudentBtn)
-                    .addComponent(delStudentBtn)
-                    .addComponent(coursesBtn)
+                    .addComponent(addCourseBtn)
+                    .addComponent(updateCourseBtn)
+                    .addComponent(delCourseBtn)
+                    .addComponent(studentsBtn)
                     .addComponent(EnrollmentBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,22 +120,22 @@ public class CoursesGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
+    private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
         new AddStudentFrame().setVisible(true);
-    }//GEN-LAST:event_addStudentBtnActionPerformed
+    }//GEN-LAST:event_addCourseBtnActionPerformed
 
-    private void updateStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudentBtnActionPerformed
+    private void updateCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCourseBtnActionPerformed
         new UpdateStudentFrame().setVisible(true);
-    }//GEN-LAST:event_updateStudentBtnActionPerformed
+    }//GEN-LAST:event_updateCourseBtnActionPerformed
 
-    private void delStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delStudentBtnActionPerformed
+    private void delCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delCourseBtnActionPerformed
         new DeleteStudentFrame().setVisible(true);
-    }//GEN-LAST:event_delStudentBtnActionPerformed
+    }//GEN-LAST:event_delCourseBtnActionPerformed
 
-    private void coursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursesBtnActionPerformed
-        new CoursesGUI().setVisible(true);
+    private void studentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBtnActionPerformed
+        new StudentGUI().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_coursesBtnActionPerformed
+    }//GEN-LAST:event_studentsBtnActionPerformed
 
     private void EnrollmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollmentBtnActionPerformed
         new EnrollmentGUI().setVisible(true);
@@ -162,11 +169,11 @@ public class CoursesGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EnrollmentBtn;
-    private javax.swing.JButton addStudentBtn;
-    private javax.swing.JButton coursesBtn;
-    private javax.swing.JButton delStudentBtn;
+    private javax.swing.JButton addCourseBtn;
+    private javax.swing.JButton delCourseBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton updateStudentBtn;
+    private javax.swing.JButton studentsBtn;
+    private javax.swing.JButton updateCourseBtn;
     // End of variables declaration//GEN-END:variables
 }

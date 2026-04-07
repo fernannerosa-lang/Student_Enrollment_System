@@ -13,22 +13,22 @@ import java.sql.SQLException;
  */
 
 public class DBConnection {
-    private static Connection connection = null;
 
     public static Connection getConnection() {
+        Connection conn = null;
         try {
-            if (connection == null) {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/student_enrollment_system",
-                    "root",
-                    "09208086993Mari"
-                );
-            }
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/student_enrollment_system",
+                "root",
+                "09208086993Mari"
+            );
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, "Database Connection Failed: " + e.getMessage());
         }
-        return connection; 
+        return conn; 
     }
+    
 }
 
