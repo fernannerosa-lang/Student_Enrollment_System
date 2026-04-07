@@ -13,7 +13,7 @@ public class Student_enrollment_system_nerosa {
     
 
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(() -> new GUI().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new StudentGUI().setVisible(true));
     }
     
 }
