@@ -6,16 +6,16 @@ package student_enrollment_system_nerosa;
 
 /**
  *
- * @author FernanCarl
+ * @author Kane
  */
-public class UpdateEnrollmentFrame extends javax.swing.JFrame {
+public class DeleteEnrollmentFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UpdateEnrollmentFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DeleteEnrollmentFrame.class.getName());
 
     /**
-     * Creates new form UpdateEnrollmentFrame
+     * Creates new form DeleteEnrollmentFrame
      */
-    public UpdateEnrollmentFrame() {
+    public DeleteEnrollmentFrame() {
         initComponents();
     }
 
@@ -28,7 +28,7 @@ public class UpdateEnrollmentFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -41,7 +41,8 @@ public class UpdateEnrollmentFrame extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(610, 360));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -66,7 +67,7 @@ public class UpdateEnrollmentFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new UpdateEnrollmentFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new DeleteEnrollmentFrame().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

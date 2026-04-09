@@ -28,20 +28,84 @@ public class AddCourseFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        NameLabel = new javax.swing.JLabel();
+        NameField = new javax.swing.JTextField();
+        DescriptionLabel = new javax.swing.JLabel();
+        DescriptionField = new javax.swing.JTextField();
+        CreditsLabel = new javax.swing.JLabel();
+        CreditsField = new javax.swing.JTextField();
+        addCourseBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        jLabel1.setFont(new java.awt.Font("Sans Serif Collection", 1, 14)); // NOI18N
+        jLabel1.setText("Add Course");
+
+        NameLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        NameLabel.setText("Course Name:");
+
+        DescriptionLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        DescriptionLabel.setText("Course Description:");
+
+        CreditsLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        CreditsLabel.setText("Credits:");
+
+        addCourseBtn.setText("Add Course");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DescriptionLabel)
+                    .addComponent(CreditsLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(NameLabel)))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(DescriptionField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(NameField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CreditsField, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(addCourseBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NameLabel)
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DescriptionLabel))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreditsField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreditsLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(addCourseBtn)
+                .addGap(37, 37, 37))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(610, 360));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -70,5 +134,13 @@ public class AddCourseFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CreditsField;
+    private javax.swing.JLabel CreditsLabel;
+    private javax.swing.JTextField DescriptionField;
+    private javax.swing.JLabel DescriptionLabel;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JLabel NameLabel;
+    private javax.swing.JButton addCourseBtn;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

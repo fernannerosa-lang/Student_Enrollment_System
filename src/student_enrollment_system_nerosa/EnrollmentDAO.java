@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class EnrollmentDAO {
     
     public void addEnrollment(int studentId, int courseId) {
-        // Updated column names to match hais.sql
+        
         String sql = "INSERT INTO enrolled_subject (students_student_id, course_course_id, date) VALUES (?, ?, CURDATE())";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -34,7 +34,7 @@ public class EnrollmentDAO {
     }
     
     public ResultSet getAllEnrollments() {
-        String sql = "SELECT e.enrollment_id, s.first_name, s.last_name, c.course_name, e.date as enrollment_date " +
+        String sql = "SELECT e.enrollment_id, s.first_name, s.last_name, c.course_name, e.date as date " +
                      "FROM enrolled_subject e " +
                      "JOIN students s ON e.students_student_id = s.student_id " +
                      "JOIN course c ON e.course_course_id = c.course_id";

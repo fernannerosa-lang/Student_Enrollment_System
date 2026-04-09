@@ -4,6 +4,10 @@
  */
 package student_enrollment_system_nerosa;
 
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.Date;
+
 /**
  *
  * @author FernanCarl
@@ -17,6 +21,7 @@ public class EnrollmentGUI extends javax.swing.JFrame {
      */
     public EnrollmentGUI() {
         initComponents();
+        refreshTable();
     }
 
     /**
@@ -36,6 +41,7 @@ public class EnrollmentGUI extends javax.swing.JFrame {
         coursesBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,7 +73,7 @@ public class EnrollmentGUI extends javax.swing.JFrame {
         EnrollStudentBtn.setText("Enroll Student");
         EnrollStudentBtn.addActionListener(this::EnrollStudentBtnActionPerformed);
 
-        delEnrollmentBtn.setText("Update Student");
+        delEnrollmentBtn.setText("Delete Enrollment");
         delEnrollmentBtn.addActionListener(this::delEnrollmentBtnActionPerformed);
 
         studentBtn.setText("Students");
@@ -80,9 +86,10 @@ public class EnrollmentGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 896, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(EnrollStudentBtn)
                         .addGap(18, 18, 18)
@@ -90,34 +97,33 @@ public class EnrollmentGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(studentBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(coursesBtn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(coursesBtn)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EnrollStudentBtn)
                     .addComponent(delEnrollmentBtn)
-                    .addComponent(studentBtn)
-                    .addComponent(coursesBtn))
+                    .addComponent(coursesBtn)
+                    .addComponent(studentBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(800, 650));
+        setSize(new java.awt.Dimension(1000, 850));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnrollStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollStudentBtnActionPerformed
-        new AddStudentFrame().setVisible(true);
+        new EnrollStudentFrame().setVisible(true);
     }//GEN-LAST:event_EnrollStudentBtnActionPerformed
 
     private void delEnrollmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEnrollmentBtnActionPerformed
-        new UpdateStudentFrame().setVisible(true);
+        new DeleteEnrollmentFrame().setVisible(true);
     }//GEN-LAST:event_delEnrollmentBtnActionPerformed
 
     private void studentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBtnActionPerformed
@@ -129,7 +135,36 @@ public class EnrollmentGUI extends javax.swing.JFrame {
         new CoursesGUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_coursesBtnActionPerformed
-
+    
+    public void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        EnrollmentDAO dao = new EnrollmentDAO();
+        
+        try (ResultSet rs = dao.getAllEnrollments()) {
+            if (rs != null) {
+                while (rs.next()) {
+                    
+                    int enrollmentId = rs.getInt("enrollment_id");
+                    String studentName = rs.getString("first_name") + " " + rs.getString("last_name");
+                    String courseName = rs.getString("course_name");
+                    Date date = rs.getDate("date");
+                    
+                    model.addRow(new Object[]{
+                        enrollmentId, 
+                        studentName, 
+                        courseName, 
+                        date
+                    });
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error loading enrollments: " + e.getMessage(), "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

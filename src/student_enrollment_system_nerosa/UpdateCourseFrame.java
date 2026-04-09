@@ -28,21 +28,98 @@ public class UpdateCourseFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        IdLabel = new javax.swing.JLabel();
+        IdField = new javax.swing.JTextField();
+        NameLabel = new javax.swing.JLabel();
+        NameField = new javax.swing.JTextField();
+        DescriptionLabel = new javax.swing.JLabel();
+        DescriptionField = new javax.swing.JTextField();
+        CreditsLabel = new javax.swing.JLabel();
+        CreditsField = new javax.swing.JTextField();
+        addCourseBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        jLabel1.setFont(new java.awt.Font("Sans Serif Collection", 1, 14)); // NOI18N
+        jLabel1.setText("Update Course");
+
+        IdLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        IdLabel.setText("Course ID:");
+
+        NameLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        NameLabel.setText("Course Name:");
+
+        DescriptionLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        DescriptionLabel.setText("Course Description:");
+
+        CreditsLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        CreditsLabel.setText("Credits:");
+
+        addCourseBtn.setText("Update Course");
+        addCourseBtn.addActionListener(this::addCourseBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jLabel1)
+                .addContainerGap(242, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DescriptionLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CreditsLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(IdLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(DescriptionField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CreditsField)
+                    .addComponent(NameField)
+                    .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addCourseBtn)
+                .addGap(244, 244, 244))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdLabel)
+                    .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NameLabel)
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DescriptionLabel))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreditsField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreditsLabel))
+                .addGap(18, 18, 18)
+                .addComponent(addCourseBtn)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(610, 360));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
+            
+    }//GEN-LAST:event_addCourseBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +147,15 @@ public class UpdateCourseFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CreditsField;
+    private javax.swing.JLabel CreditsLabel;
+    private javax.swing.JTextField DescriptionField;
+    private javax.swing.JLabel DescriptionLabel;
+    private javax.swing.JTextField IdField;
+    private javax.swing.JLabel IdLabel;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JLabel NameLabel;
+    private javax.swing.JButton addCourseBtn;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,9 @@
  */
 package student_enrollment_system_nerosa;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author FernanCarl
@@ -17,6 +20,7 @@ public class CoursesGUI extends javax.swing.JFrame {
      */
     public CoursesGUI() {
         initComponents();
+        refreshTable();
     }
 
     /**
@@ -38,6 +42,7 @@ public class CoursesGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Courses Management");
+        setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,51 +90,51 @@ public class CoursesGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addCourseBtn)
                         .addGap(18, 18, 18)
                         .addComponent(updateCourseBtn)
                         .addGap(18, 18, 18)
                         .addComponent(delCourseBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
                         .addComponent(studentsBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(EnrollmentBtn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(EnrollmentBtn)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addCourseBtn)
                     .addComponent(updateCourseBtn)
                     .addComponent(delCourseBtn)
-                    .addComponent(studentsBtn)
-                    .addComponent(EnrollmentBtn))
+                    .addComponent(EnrollmentBtn)
+                    .addComponent(studentsBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(800, 650));
+        setSize(new java.awt.Dimension(1000, 850));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
-        new AddStudentFrame().setVisible(true);
+        new AddCourseFrame().setVisible(true);
     }//GEN-LAST:event_addCourseBtnActionPerformed
 
     private void updateCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCourseBtnActionPerformed
-        new UpdateStudentFrame().setVisible(true);
+        new UpdateCourseFrame().setVisible(true);
     }//GEN-LAST:event_updateCourseBtnActionPerformed
 
     private void delCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delCourseBtnActionPerformed
-        new DeleteStudentFrame().setVisible(true);
+        new DeleteCourseFrame().setVisible(true);
     }//GEN-LAST:event_delCourseBtnActionPerformed
 
     private void studentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBtnActionPerformed
@@ -142,6 +147,26 @@ public class CoursesGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_EnrollmentBtnActionPerformed
 
+    public void refreshTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        CoursesDAO dao = new CoursesDAO();
+        List<Courses> list = dao.getAllCourses();
+        
+        if(list != null) {
+            for (Courses c : list) {
+                Object[] row = {
+                    c.getCourseid(),
+                    c.getCourseName(),
+                    c.getCourseDescription(),
+                    c.getCredits()
+                };
+                model.addRow(row);
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
