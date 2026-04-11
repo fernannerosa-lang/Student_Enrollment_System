@@ -119,11 +119,11 @@ public class EnrollmentGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnrollStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollStudentBtnActionPerformed
-        new EnrollStudentFrame().setVisible(true);
+        new EnrollStudentFrame(this).setVisible(true);
     }//GEN-LAST:event_EnrollStudentBtnActionPerformed
 
     private void delEnrollmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEnrollmentBtnActionPerformed
-        new DeleteEnrollmentFrame().setVisible(true);
+        new DeleteEnrollmentFrame(this).setVisible(true);
     }//GEN-LAST:event_delEnrollmentBtnActionPerformed
 
     private void studentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBtnActionPerformed

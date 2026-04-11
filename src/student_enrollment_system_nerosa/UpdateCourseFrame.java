@@ -4,20 +4,28 @@
  */
 package student_enrollment_system_nerosa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author FernanCarl
  */
 public class UpdateCourseFrame extends javax.swing.JFrame {
-    
+    private CoursesGUI GUI;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UpdateCourseFrame.class.getName());
 
     /**
      * Creates new form UpdateCourseFrame
      */
-    public UpdateCourseFrame() {
+    public UpdateCourseFrame(CoursesGUI GUI) {
         initComponents();
+        this.GUI = GUI;
     }
+
+    public UpdateCourseFrame() {
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,7 +126,38 @@ public class UpdateCourseFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
-            
+    
+    String idStr = IdField.getText();
+    String courseName = NameField.getText();
+    String courseDes = DescriptionField.getText();
+    String credStr = CreditsField.getText();
+    
+    if (idStr.isEmpty() || courseName.isEmpty() || courseDes.isEmpty() || credStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields.");
+        return;
+    }
+    
+    Courses course = new Courses();
+    try {
+    course.setCourseid(Integer.parseInt(idStr));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Course ID is not a valid number.");
+        return;
+    }
+    course.setCourseName(courseName);
+    course.setCourseDescription(courseDes);
+    try {
+    course.setCredits(Integer.parseInt(credStr));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Course ID is not a valid number.");
+        return;
+    }
+    
+    CoursesDAO dao = new CoursesDAO();
+    dao.updateCourse(course);
+    GUI.refreshTable();
+    this.dispose();
+        
     }//GEN-LAST:event_addCourseBtnActionPerformed
 
     /**

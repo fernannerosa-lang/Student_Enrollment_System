@@ -4,20 +4,28 @@
  */
 package student_enrollment_system_nerosa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author FernanCarl
  */
 public class DeleteCourseFrame extends javax.swing.JFrame {
-    
+    private CoursesGUI GUI;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DeleteCourseFrame.class.getName());
 
     /**
      * Creates new form DeleteCourseFrame
      */
-    public DeleteCourseFrame() {
+    public DeleteCourseFrame(CoursesGUI GUI) {
         initComponents();
+        this.GUI = GUI;
     }
+
+    public DeleteCourseFrame() {
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,23 +36,78 @@ public class DeleteCourseFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        IdLabel = new javax.swing.JLabel();
+        IdField = new javax.swing.JTextField();
+        delStudentBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+
+        jLabel1.setFont(new java.awt.Font("Sans Serif Collection", 1, 14)); // NOI18N
+        jLabel1.setText("Delete Course");
+
+        IdLabel.setFont(new java.awt.Font("Sans Serif Collection", 0, 14)); // NOI18N
+        IdLabel.setText("Course ID:");
+
+        delStudentBtn.setText("Delete Course");
+        delStudentBtn.addActionListener(this::delStudentBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(delStudentBtn)
+                    .addComponent(jLabel1))
+                .addGap(246, 246, 246))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(IdLabel)
+                .addGap(40, 40, 40)
+                .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdLabel)
+                    .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(90, 90, 90)
+                .addComponent(delStudentBtn)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(610, 360));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void delStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delStudentBtnActionPerformed
+    
+    String idStr = IdField.getText();
+    
+    if (idStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields.");
+        return;
+    }
+    
+    CoursesDAO dao = new CoursesDAO();
+    try {
+            dao.deleteCourse(Integer.parseInt(idStr));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Course ID must be a valid number.");
+            return;
+        }
+    GUI.refreshTable();
+    this.dispose();
+        
+    }//GEN-LAST:event_delStudentBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,5 +135,9 @@ public class DeleteCourseFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField IdField;
+    private javax.swing.JLabel IdLabel;
+    private javax.swing.JButton delStudentBtn;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

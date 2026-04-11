@@ -126,15 +126,15 @@ public class CoursesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
-        new AddCourseFrame().setVisible(true);
+        new AddCourseFrame(this).setVisible(true);
     }//GEN-LAST:event_addCourseBtnActionPerformed
 
     private void updateCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCourseBtnActionPerformed
-        new UpdateCourseFrame().setVisible(true);
+        new UpdateCourseFrame(this).setVisible(true);
     }//GEN-LAST:event_updateCourseBtnActionPerformed
 
     private void delCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delCourseBtnActionPerformed
-        new DeleteCourseFrame().setVisible(true);
+        new DeleteCourseFrame(this).setVisible(true);
     }//GEN-LAST:event_delCourseBtnActionPerformed
 
     private void studentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsBtnActionPerformed

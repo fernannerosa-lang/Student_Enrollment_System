@@ -4,20 +4,28 @@
  */
 package student_enrollment_system_nerosa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author FernanCarl
  */
 public class AddCourseFrame extends javax.swing.JFrame {
     
+    private CoursesGUI GUI;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddCourseFrame.class.getName());
 
     /**
      * Creates new form AddCourseFrame
      */
-    public AddCourseFrame() {
+    public AddCourseFrame(CoursesGUI GUI) {
         initComponents();
+        this.GUI = GUI;
     }
+
+    public AddCourseFrame() {
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,6 +61,7 @@ public class AddCourseFrame extends javax.swing.JFrame {
         CreditsLabel.setText("Credits:");
 
         addCourseBtn.setText("Add Course");
+        addCourseBtn.addActionListener(this::addCourseBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,9 +72,7 @@ public class AddCourseFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(DescriptionLabel)
                     .addComponent(CreditsLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(NameLabel)))
+                    .addComponent(NameLabel))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(DescriptionField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,6 +114,34 @@ public class AddCourseFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(610, 360));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
+    
+    String name = NameField.getText();
+    String description = DescriptionField.getText();
+    String credStr = CreditsField.getText();
+    
+    if ( name.isEmpty() || description.isEmpty() || credStr.isEmpty() ) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields.");
+        return;
+    }
+    
+    Courses course = new Courses();
+    course.setCourseName(name);
+    course.setCourseDescription(description);
+    try {
+            course.setCredits(Integer.parseInt(credStr));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Credits must be a valid number.");
+            return;
+        }
+    
+    CoursesDAO dao = new CoursesDAO();
+    
+    dao.addCourse(course);
+    GUI.refreshTable();
+    this.dispose();
+    }//GEN-LAST:event_addCourseBtnActionPerformed
 
     /**
      * @param args the command line arguments

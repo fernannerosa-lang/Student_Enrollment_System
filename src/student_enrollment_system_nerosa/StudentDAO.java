@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +28,7 @@ public class StudentDAO {
         stmt.setInt(3, student.getAge());
         stmt.setString(4, student.getEmail());
         stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Student successfully added!");
     } catch (SQLException e) {
         e.printStackTrace();
     }
@@ -63,6 +65,7 @@ public class StudentDAO {
             stmt.setString(4, student.getEmail());
             stmt.setInt(5, student.getStudentid());
             stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Student updated successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,7 +77,7 @@ public class StudentDAO {
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, studentId);
             stmt.executeUpdate();
-            
+            JOptionPane.showMessageDialog(null, "Student deleted successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

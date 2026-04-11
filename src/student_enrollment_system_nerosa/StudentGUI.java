@@ -127,15 +127,15 @@ public class StudentGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
-    new AddStudentFrame().setVisible(true);
+    new AddStudentFrame(this).setVisible(true);
     }//GEN-LAST:event_addStudentBtnActionPerformed
 
     private void updateStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudentBtnActionPerformed
-    new UpdateStudentFrame().setVisible(true);        
+    new UpdateStudentFrame(this).setVisible(true);        
     }//GEN-LAST:event_updateStudentBtnActionPerformed
 
     private void delStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delStudentBtnActionPerformed
-    new DeleteStudentFrame().setVisible(true);        
+    new DeleteStudentFrame(this).setVisible(true);        
     }//GEN-LAST:event_delStudentBtnActionPerformed
 
     private void coursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coursesBtnActionPerformed

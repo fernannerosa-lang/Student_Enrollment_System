@@ -3,21 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package student_enrollment_system_nerosa;
-
+import java.util.List;
 /**
  *
  * @author FernanCarl
  */
 public class EnrollStudentFrame extends javax.swing.JFrame {
     
+    private EnrollmentGUI GUI;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EnrollStudentFrame.class.getName());
 
     /**
      * Creates new form EnrollStudentFrame
      */
-    public EnrollStudentFrame() {
+    public EnrollStudentFrame(EnrollmentGUI GUI) {
         initComponents();
+        this.GUI = GUI;
+        loadComboBoxData();
     }
+
+    public EnrollStudentFrame() {
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +60,7 @@ public class EnrollStudentFrame extends javax.swing.JFrame {
         CourseCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         addStudentBtn.setText("Enroll Student");
+        addStudentBtn.addActionListener(this::addStudentBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +107,55 @@ public class EnrollStudentFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
+        
+    try {
+            String selectedStudent = (String) NameCBox.getSelectedItem();
+            String selectedCourse = (String) CourseCBox.getSelectedItem();
+            int studentId = Integer.parseInt(selectedStudent.split(" ")[0]);
+            int courseId = Integer.parseInt(selectedCourse.split(" ")[0]);
+            
+            EnrollmentDAO dao = new EnrollmentDAO();
+            dao.addEnrollment(studentId, courseId);
+            
+            if (this.GUI != null) {
+                this.GUI.refreshTable();
+            }
+            this.dispose();
+            
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: Could not enroll student. Please check your selections.");
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_addStudentBtnActionPerformed
+
+    private void loadComboBoxData() {
+        NameCBox.removeAllItems();
+        CourseCBox.removeAllItems();
+        
+        try {
+            
+            StudentDAO studentDao = new StudentDAO();
+            List<Student> studentList = studentDao.getAllStudents();
+            
+            for (Student s : studentList) {
+                NameCBox.addItem(s.getStudentid() + " - " + s.getFname() + " " + s.getLname());
+            }
+            
+            CoursesDAO courseDao = new CoursesDAO();
+            List<Courses> courseList = courseDao.getAllCourses();
+            
+            for (Courses c : courseList) {
+                CourseCBox.addItem(c.getCourseid() + " - " + c.getCourseName());
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error loading data for dropdowns.");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

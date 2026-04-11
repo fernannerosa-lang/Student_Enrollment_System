@@ -4,20 +4,29 @@
  */
 package student_enrollment_system_nerosa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author FernanCarl
  */
 public class AddStudentFrame extends javax.swing.JFrame {
     
+    private StudentGUI GUI;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddStudentFrame.class.getName());
 
     /**
      * Creates new form AddStudentFrame
      */
-    public AddStudentFrame() {
+    public AddStudentFrame(StudentGUI GUI) {
         initComponents();
+        this.GUI = GUI;
     }
+
+    public AddStudentFrame() {
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +67,7 @@ public class AddStudentFrame extends javax.swing.JFrame {
         EmailLabel.setText("Email:");
 
         addStudentBtn.setText("Add Student");
+        addStudentBtn.addActionListener(this::addStudentBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,6 +128,37 @@ public class AddStudentFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(610, 360));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
+    
+    String fname = FNameField.getText();
+    String lname = LNameField.getText();
+    String ageStr = AgeField.getText();
+    String email = EmailField.getText();
+    
+    if ( fname.isEmpty() || lname.isEmpty() || ageStr.isEmpty() || email.isEmpty() ) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields.");
+        return;
+    }
+    
+    Student student = new Student();
+    student.setFname(fname);
+    student.setLname(lname);
+    try {
+            student.setAge(Integer.parseInt(ageStr));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Credits must be a valid number.");
+            return;
+        }
+    student.setEmail(email);
+    
+    StudentDAO dao = new StudentDAO();
+    
+    dao.addStudent(student);
+    GUI.refreshTable();
+    this.dispose();
+        
+    }//GEN-LAST:event_addStudentBtnActionPerformed
 
     /**
      * @param args the command line arguments

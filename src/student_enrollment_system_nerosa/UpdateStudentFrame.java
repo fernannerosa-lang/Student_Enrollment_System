@@ -4,20 +4,30 @@
  */
 package student_enrollment_system_nerosa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author FernanCarl
  */
 public class UpdateStudentFrame extends javax.swing.JFrame {
-    
+    private StudentGUI GUI;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UpdateStudentFrame.class.getName());
 
     /**
      * Creates new form UpdateStudentFrame
      */
-    public UpdateStudentFrame() {
+    public UpdateStudentFrame(StudentGUI GUI) {
         initComponents();
+        this.GUI = GUI;
     }
+
+    public UpdateStudentFrame() {
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,7 +140,41 @@ public class UpdateStudentFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
-            
+    
+    String idStr = IdField.getText();
+    String fName = FNameField.getText();
+    String lName = LNameField.getText();
+    String ageStr = AgeField.getText();
+    String email = EmailField.getText();
+    
+    if (idStr.isEmpty() || fName.isEmpty() || lName.isEmpty() || ageStr.isEmpty() || email.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields.");
+        return;
+    }
+    
+    Student student = new Student();
+    try {
+    student.setStudentid(Integer.parseInt(idStr));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Course ID is not a valid number.");
+        return;
+    }
+    student.setFname(fName);
+    student.setLname(lName);
+    try {
+    student.setAge(Integer.parseInt(ageStr));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Course ID is not a valid number.");
+        return;
+    }
+    student.setEmail(email);
+    
+    StudentDAO dao = new StudentDAO();
+    
+    dao.updateStudent(student);
+    GUI.refreshTable();
+    this.dispose();
+        
     }//GEN-LAST:event_addStudentBtnActionPerformed
 
     /**

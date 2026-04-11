@@ -76,7 +76,7 @@ public class CoursesDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, courseid);
             stmt.executeUpdate();
-            
+            JOptionPane.showMessageDialog(null, "Course deleted successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
