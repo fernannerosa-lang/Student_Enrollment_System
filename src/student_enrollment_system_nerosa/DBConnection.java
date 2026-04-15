@@ -21,7 +21,7 @@ public class DBConnection {
             conn = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/student_enrollment_system",
                 "root",
-                "09208086993Mari"
+                ""
             );
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
